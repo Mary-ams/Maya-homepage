@@ -1,20 +1,26 @@
-// App.tsx
+import 'react-native-gesture-handler';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomePage from './src/components/HomePage';
+import { registerRootComponent } from 'expo';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
-const App: React.FC = () => {
+function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="Home" component={HomePage} />
-        {/* Add other screens here */}
+      <Stack.Navigator>
+        <Stack.Screen 
+          name="Home" 
+          component={HomePage}
+          options={{ title: 'Travel Guide' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}
+
+registerRootComponent(App);
 
 export default App;
